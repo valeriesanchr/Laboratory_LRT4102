@@ -7,6 +7,6 @@ lista_horas_trabajadas = [4,8,9,5,1,7]
 for i in range(6):
     
     print(str(lista_nombres[i]) + " will be paid " + str(lista_horas_trabajadas[i]*lista_sueldo_hora[i])+ "$")
-    
+    gi
 
 
