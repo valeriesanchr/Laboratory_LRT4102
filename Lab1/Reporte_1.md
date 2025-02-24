@@ -170,10 +170,8 @@ import random
 
 # definir tamaño del mapa
 tamaño = 5
-
 # Crear la matriz del terreno con espacios libres representados por "o"
 terreno = [['o' for _ in range(tamaño)] for _ in range(tamaño)]
-
 # Definir posición inicial y destino
 pos_actual = (0, 0)
 pos_final = (tamaño - 1, tamaño - 1)
@@ -184,16 +182,22 @@ trayectoria = []
 # Direcciones de movimiento disponibles
 movs = ['D', 'B', 'I', 'A']
 direc = 'D'
+```
+En esta parte hacemos el set up inicial del código. Indicamos el tamaño del mapa, así como crear el terreno que por el momento estará libre de obstáculos. Sabemos que la posición inicial es (0,0) y que la posición final siempre será (tamaño-1, tamaño-1). También creamos un vector vacío que posteriormente almacenará la ruta que habrá recorrido el robot. Tenemos cuatro direcciones de movimiento posibles: izquierda, derecha, arriba y abajo, representadas por D, B, I , A  El robot inicia moviéndose hacia la derecha.
 
+```python
 # Generar obstáculos aleatorios en el mapa sin bloquear el inicio ni la meta
 num_obstaculos = random.randint(tamaño, tamaño * 2)
 for _ in range(num_obstaculos):
     while True:
         fila, col = random.randint(0, tamaño - 1), random.randint(0, tamaño - 1)
         if (fila, col) not in [(0, 0), pos_final]:  # Evitar bloquear la entrada y salida
-            terreno[fila][col] = 'X'
+            terreno[fila][col] ='X'
             break
+```
+Se añaden los obstáculos al terreno. Se tiene cuidado para que no se creen obstáculos ni en la salida ni en la meta.
 
+```python
 # Añadir posición inicial al camino recorrido
 trayectoria.append(pos_actual)
 
@@ -204,7 +208,9 @@ desplazamiento = {
     'A': (-1, 0),  # Arriba
     'B': (1, 0)    # Abajo
 }
-
+```
+Al vector trayectoria se le añade la posición actual cada que el robot hace un movimiento nuevo. También se explica cómo se puede mover el robot. 
+```python
 # Función anónima para verificar si un movimiento es válido
 es_valido = lambda x, y: 0 <= x < tamaño and 0 <= y < tamaño and terreno[x][y] != 'X'
 
@@ -225,7 +231,10 @@ while (fila, col) != pos_final:
     if not mov_exitoso and not any(es_valido(fila + dx, col + dy) for dx, dy in desplazamiento.values()):
         print("\nNo hay ruta disponible.")
         break
+```
+Se inicia el movimiento del robot, y se genera un while que se mantendrá activo hasta que el robot llegue a la posición final. Mientras tanto, tenemos los comandos que le permitirán al robot seguirse moviendo en el mapa.
 
+```python
 # Mostrar resultados
 if (fila, col) == pos_final:
     print("\nEl robot llegó al destino.")
@@ -239,7 +248,9 @@ for i in range(tamaño):
         else:
             print(terreno[i][j], end=" ")
     print()
-
+```
+Una vez que el robot llegó al destino, se imprime un mensaje indicando esto. Además, se imprime el mapa del terrreno.
+```python
 # Crear una nueva matriz para visualizar la trayectoria con flechas
 mapa_flechas = [['o' for _ in range(tamaño)] for _ in range(tamaño)]
 indicadores = {(0, 1): '→', (0, -1): '←', (-1, 0): '↑', (1, 0): '↓'}
@@ -256,6 +267,8 @@ print("\nMapa con la Ruta Seguida:")
 for fila in mapa_flechas:
     print(" ".join(fila))
 ```
+Finalmente, se crea la matriz que será capaz de mostrar la trayectoria que siguió el robot con una serie de flechas. El for nos ayuda a llenar esta matriz con la ruta seguida. Finalmente, se marca la meta con la letra F, y se imprime el mapa. 
+
 ## Problema 7
 Una tienda quiere gestionar su inventario de productos. Para ello, debes implementar un sistema
 en Python que permita:
@@ -263,7 +276,6 @@ en Python que permita:
 * Actualizar la cantidad en stock cuando se venden productos.
 * Mostrar la información de un producto con su disponibilidad.
 * Calcular el valor total del inventario (precio × cantidad de cada producto).
-
 ```python
 class Producto:
     def __init__(self, nombre, precio, cantidad):
@@ -271,7 +283,10 @@ class Producto:
         self.nombre = nombre
         self.precio = precio
         self.cantidad = cantidad
-    
+```
+Aquí inicializamos nuestro código, creando una clase llamada Producto. También definimos una función que nos permite inicializar los atributos del producto, generando tres atributos: nombre, precio, y cantidad.
+
+```python    
     def vender(self, cantidad_vendida):
         # Reduce la cantidad en stock si hay suficiente disponibilidad
         if cantidad_vendida <= self.cantidad:
@@ -279,26 +294,38 @@ class Producto:
             print(f"Se vendieron {cantidad_vendida} unidades de {self.nombre}.")
         else:
             print("No hay suficiente stock disponible.")
-    
+```
+Ahora creamos la función vender, en donde definimos el comportamiento cuando se intenta realizar una venta. Primero checa si hay suficiente stock, en caso de haberlo, procede a reducir el número de stock. 
+```python
     def mostrar_info(self):
         # Muestra la información del producto y su disponibilidad
         disponibilidad = "Disponible" if self.cantidad > 0 else "Agotado"
         print(f"Producto: {self.nombre}, Precio: ${self.precio}, Stock: {self.cantidad}, Estado: {disponibilidad}")
-    
+```
+Esta función nos sirve para mostrar la informacipon del producto. Indica el nombre, el precio, si hay stock, y si este producto está disponible para su venta.
+
+```python    
     def valor_total(self):
         # Calcula el valor total del inventario del producto
         return self.precio * self.cantidad
-
+```
+Una simple función que realiza una multiplicación de precio por cantidad para saber el valor total de lo que hay en stock de cierto producto.
+```python
 # Lista para almacenar los productos
 productos = []
+```
+Se genera un vector vacío en donde posteriormente se almacenan los productos que ingrese el usuario.
 
+```python
 def agregar_producto():
     nombre = input("Ingrese el nombre del producto: ")
     precio = float(input("Ingrese el precio del producto: "))
     cantidad = int(input("Ingrese la cantidad en stock: "))
     productos.append(Producto(nombre, precio, cantidad))
     print("Producto agregado exitosamente.")
-
+```
+Es la función que se ocupa cuando el usuario desea agregar un producto. Se necesita ingresar el nombre, el precio, y la cantidad de producto. Estos datos se agregan al vector producto, exitosamente agregándolos a stock.
+```python
 def vender_producto():
     nombre = input("Ingrese el nombre del producto a vender: ")
     for producto in productos:
@@ -307,7 +334,9 @@ def vender_producto():
             producto.vender(cantidad)
             return
     print("Producto no encontrado.")
-
+```
+Cuando se realizar la venta de un producto, se llama esta función. Primero busca que el producto sí exista en nuestro vector que almacena los productos, y después llama a la función vender, ingresando el dato de cantidad para que realice la operación vender con ese dato.
+```python
 def mostrar_productos():
     if not productos:
         print("No hay productos registrados.")
@@ -315,7 +344,9 @@ def mostrar_productos():
     for producto in productos:
         producto.mostrar_info()
         print(f"Valor total del inventario: ${producto.valor_total()}")
-
+```
+Esta función permite mostrar todo el stock disponible, así como dar el valor de todo lo que hay en stock.
+```python
 def menu():
     while True:
         print("\n--- Menú de Inventario ---")
@@ -336,11 +367,15 @@ def menu():
             break
         else:
             print("Opción no válida. Intente nuevamente.")
-
+```
+Esta es la definición de la función menú que se le muestra al usuario, el cual va a llamar a varias de las funciones antes definidas para poder realizar dicha operación. 
+```python
 # Ejecutar el menú
 menu()
-
 ```
+Ejecuta el menú que se le muestra al usuario. 
+
+
 
 
 
