@@ -375,6 +375,11 @@ menu()
 ```
 Ejecuta el menú que se le muestra al usuario. 
 
+# Referencias
+
+1. W3Schools.com. (n.d.). https://www.w3schools.com/python/python_variables.asp
+2. Amos, D. (2024, December 15). Object-Oriented Programming (OOP) in Python. https://realpython.com/python3-object-oriented-programming/#what-is-object-oriented-programming-in-python
+3. ¿Qué es Python? - Explicación del lenguaje Python - AWS. (n.d.). Amazon Web Services, Inc. https://aws.amazon.com/es/what-is/python/
 
 
 
