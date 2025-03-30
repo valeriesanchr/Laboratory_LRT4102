@@ -4,6 +4,9 @@ For this lab exercise, we created several programs that tested our knowledge in 
 ## General considerations
 
 All the codes used for this lab were written in python, and then executed with ROS. In order to test the codes, I wrote both the original code and its launch file. In order to run them, I typed this command in the terminal:
+```python
+$ roslaunch Practicas_Lab <launch file>
+```
 
 ## Lab2 Basic
 For this exercise, we had two files: listener.py, and talker.py. We had to do the following:
