@@ -1,13 +1,87 @@
 # Laboratory 2 Report
 For this lab exercise, we created several programs that tested our knowledge in different areas.
 
+## General considerations
+
+All the codes used for this lab were written in python, and then executed with ROS. In order to test the codes, I wrote both the original code and its launch file. In order to run them, I typed this command in the terminal:
+
 ## Lab2 Basic
-For this exercise, we had two files: listener.py, and talker.py. 
-![image](https://github.com/user-attachments/assets/ca0eb402-e3cd-4bf3-b4f9-ab9dc60e1749)
+For this exercise, we had two files: listener.py, and talker.py. We had to do the following:
+
+* Create a ROS package named Practicas_lab with dependencies on rospy, roscpp, and std_msgs.
+* Place the files listener.py and talker.py in the package.
+* Compile the package.
+* Run the talker node.
+* Run the listener node.
+* Analyze and conclude its functionality..
+
+This is the full code for the listener side: 
+```python
+#!/usr/bin/env python
+# license removed for brevity
+import rospy
+from std_msgs.msg import String
+
+def talker():
+    pub = rospy.Publisher('chatter', String, queue_size=10)
+    rospy.init_node('talker', anonymous=True)
+    rate = rospy.Rate(10) # 10hz
+    while not rospy.is_shutdown():
+        hello_str = "hello world %s" % rospy.get_time()
+        rospy.loginfo(hello_str)
+        pub.publish(hello_str)
+        rate.sleep()
+
+if __name__ == '__main__':
+    try:
+        talker()
+    except rospy.ROSInterruptException:
+        pass
+```
+And this is the full code for the talker:
 
 ```python
------
+#!/usr/bin/env python
+import rospy
+from std_msgs.msg import String
+
+def callback(data):
+    rospy.loginfo(rospy.get_caller_id() + "I heard %s", data.data)
+    
+def listener():
+
+    # In ROS, nodes are uniquely named. If two nodes with the same
+    # name are launched, the previous one is kicked off. The
+    # anonymous=True flag means that rospy will choose a unique
+    # name for our 'listener' node so that multiple listeners can
+    # run simultaneously.
+    rospy.init_node('listener', anonymous=True)
+
+    rospy.Subscriber("chatter", String, callback)
+
+    # spin() simply keeps python from exiting until this node is stopped
+    rospy.spin()
+
+if __name__ == '__main__':
+    listener()
 ```
+If we run both codes at the same time, this is what we obtain in the terminal:
+![image](https://github.com/user-attachments/assets/ca0eb402-e3cd-4bf3-b4f9-ab9dc60e1749)
+
+This code is also known as a "publisher and susbcriber". The ROS talker node starts with a shebang declaration to ensure the script runs as a Python script within the ROS environment. It then imports rospy, which is necessary for creating ROS nodes, and std_msgs.msg.String to enable the use of the standard String message type for communication.
+
+Next, the script defines a publisher that sends messages to the "chatter" topic using the String message type. The queue_size parameter is included to manage message storage in case subscribers are slow to process them. The node is then initialized with the name "talker," and the anonymous=True flag ensures it gets a unique name, preventing conflicts when multiple instances run simultaneously.
+
+To regulate the message transmission rate, a rate object is created to maintain a loop frequency of 10 Hz. The main loop continuously executes until the node is shut down. During each iteration, a "hello world" message is generated, including a timestamp, and logged for debugging. The message is then published to the "chatter" topic, and the loop pauses momentarily to maintain the desired frequency.
+
+For debugging and monitoring, rospy.loginfo() is used, allowing messages to be printed to the console, logged in a file, and sent to rosout, making it easier to track node activity. Finally, the script includes exception handling to catch rospy.ROSInterruptException, which prevents errors when the node is stopped using Ctrl+C or any other shutdown command.
+
+With the talker node in place, the next step is to implement a listener node to receive and process the published messages. The listener.py node in ROS subscribes to the "chatter" topic, which transmits messages of type std_msgs.msg.String. When a new message is received, a callback function is triggered to process it.
+
+To ensure each node has a unique name, the anonymous=True argument is added to rospy.init_node(), preventing conflicts if multiple listeners run simultaneously.
+
+Finally, rospy.spin() is used to keep the node running until it is manually stopped, ensuring it continuously listens for incoming messages.
+
 ## Lab2 Medium
 
 ## Lab2 Advanced
