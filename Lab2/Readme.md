@@ -83,6 +83,9 @@ To ensure each node has a unique name, the anonymous=True argument is added to r
 Finally, rospy.spin() is used to keep the node running until it is manually stopped, ensuring it continuously listens for incoming messages.
 
 ## Lab2 Medium
+![image](https://github.com/user-attachments/assets/f3d95066-19f9-49cb-801e-321af4e550f7)
+
+![image](https://github.com/user-attachments/assets/44a090d9-ea8f-4d6f-ad5c-803be8f128ad)
 
 ## Lab2 Advanced
 
