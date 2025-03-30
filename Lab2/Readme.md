@@ -83,11 +83,43 @@ To ensure each node has a unique name, the anonymous=True argument is added to r
 Finally, rospy.spin() is used to keep the node running until it is manually stopped, ensuring it continuously listens for incoming messages.
 
 ## Lab2 Medium
+For this part of the lab, we had to do the following:
+* Create a keyboard control for turtlesim.
+* Draw a square and an equilateral triangle with turtlesim (without a controller).
+
+In order to be able to read the input from our keyboard, we had to implement the folllowing function:
+```python
+def get_key():
+    """Lee una tecla del teclado sin necesidad de presionar Enter."""
+    fd = sys.stdin.fileno()
+    old_settings = termios.tcgetattr(fd)
+    try:
+        tty.setraw(fd)
+        key = sys.stdin.read(1)  # Lee un solo caracter
+    finally:
+        termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
+    return key
+```
+Keyboard control:
+![image](https://github.com/user-attachments/assets/92481d65-3092-430e-a615-86bd898155e1)
+The keys WASD control the direction of the turtle, and allow it move forward, backwards, up and down.
+
+Square:
 ![image](https://github.com/user-attachments/assets/f3d95066-19f9-49cb-801e-321af4e550f7)
 
+Triangle:
 ![image](https://github.com/user-attachments/assets/44a090d9-ea8f-4d6f-ad5c-803be8f128ad)
 
+These codes were fairly simple, since I only needed to make a few changes so that the turtle could make the shapes. 
+
 ## Lab2 Advanced
+For this final part, the instructions were as follows:
+
+* Position control for turtlesim (P)
+* Position control for turtlesim (PI)
+* Position control for turtlesim (PID)
+* Compare the performance of each controller using Plot Juggler or another plotting tool.
+* Report the results in Markdown.
 
 Proportional control (P)
 
