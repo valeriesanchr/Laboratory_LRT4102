@@ -134,15 +134,15 @@ Proportional integral derivative control (PID)
 ![image](https://github.com/user-attachments/assets/c8bab0ef-10ac-44da-9d22-d7a1f5bcb916)
 
 
+In Plot Juggler, when I compared the performance of the different controllers (P, PI, and PID), I observed the changes in the x and y positions, as well as the linear velocity, over time.
 
-# Referencias
+With P-Control, the x and y positions gradually approached the target but never fully reached it due to steady-state error. The system hovered near the target, staying within a small margin of error. The linear velocity started high as the robot reacted to the position error but decreased as the robot got closer to the target, though it never fully stopped. When the gain \(K_p\) was too high, I noticed oscillations in both the x and y positions, and the linear velocity fluctuated as the system attempted to correct its position. The robot didn’t settle at the target but oscillated or hovered around it.
 
-1. W3Schools.com. (n.d.). https://www.w3schools.com/python/python_variables.asp
-2. Amos, D. (2024, December 15). Object-Oriented Programming (OOP) in Python. https://realpython.com/python3-object-oriented-programming/#what-is-object-oriented-programming-in-python
-3. ¿Qué es Python? - Explicación del lenguaje Python - AWS. (n.d.). Amazon Web Services, Inc. https://aws.amazon.com/es/what-is/python/
+In PI-Control, the x and y positions eventually reached the target, eliminating the steady-state error. However, it took longer to converge compared to P-Control, and there was some overshoot, where the robot briefly passed the target before stabilizing. The linear velocity decreased over time as the integral term accumulated past errors, but the response was slower than in P-Control. When the integral gain \(K_i\) was too large, I saw the system overcompensate, which caused reversals in the linear velocity and temporary overshooting in both the x and y positions. Eventually, the system stabilized, correcting for steady-state error, but it took longer to settle than P-Control.
 
+With PID-Control, the x and y positions reached the target quickly and accurately, with minimal error. The linear velocity started high but decreased smoothly and quickly as the system corrected the error. The derivative term helped prevent overshoot, ensuring that the system stabilized quickly and accurately at the target position. The robot approached the target with minimal fluctuations in velocity, resulting in a smooth and efficient response.
 
-
+In summary, P-Control showed persistent position errors with fluctuating velocities and potential oscillations around the target. PI-Control eliminated steady-state error but overshot and took longer to stabilize compared to P-Control. PID-Control provided the best performance, with the x and y positions quickly converging to the target, and rapid stabilization of the linear velocity. 
 
 
 
