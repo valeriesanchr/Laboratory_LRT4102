@@ -13,12 +13,15 @@ For this exercise, we had two files: listener.py, and talker.py.
 ## Lab2 Advanced
 
 Proportional control (P)
+
 ![image](https://github.com/user-attachments/assets/3657a7be-19e3-4c5e-9079-3ce13f71e123)
 
 Proportional integral control (PI)
+
 ![image](https://github.com/user-attachments/assets/5975c3fc-a27d-4aba-844b-54a6e1ffb63e)
 
 Proportional integral derivative control (PID)
+
 ![image](https://github.com/user-attachments/assets/64c74755-aa37-44c4-ae76-6353b3835fed)
 
 
