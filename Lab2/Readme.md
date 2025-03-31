@@ -126,15 +126,18 @@ For this final part, the instructions were as follows:
 
 Proportional control (P)
 
-![image](https://github.com/user-attachments/assets/3657a7be-19e3-4c5e-9079-3ce13f71e123)
+![image](https://github.com/user-attachments/assets/81a083d7-053a-484f-b045-67eb52cfdafd)
+
 
 Proportional integral control (PI)
-![image](https://github.com/user-attachments/assets/43ea7afc-b54b-486c-bc9e-f74f649ff8a6)
+
+![image](https://github.com/user-attachments/assets/765e0905-0a70-44b7-8e4b-ff72155bda2c)
+
 
 
 Proportional integral derivative control (PID)
+![image](https://github.com/user-attachments/assets/013cf6c0-765a-44b0-a943-a0c9cb63f87e)
 
-![image](https://github.com/user-attachments/assets/79434710-603d-40a9-9bbd-d065c275036b)
 
 
 In Plot Juggler, when I compared the performance of the different controllers (P, PI, and PID), I observed the changes in the x and y positions, as well as the linear velocity, over time.
