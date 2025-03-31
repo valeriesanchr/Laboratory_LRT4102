@@ -134,7 +134,8 @@ Proportional integral control (PI)
 
 Proportional integral derivative control (PID)
 
-![image](https://github.com/user-attachments/assets/c8bab0ef-10ac-44da-9d22-d7a1f5bcb916)
+![image](https://github.com/user-attachments/assets/79434710-603d-40a9-9bbd-d065c275036b)
+
 
 In Plot Juggler, when I compared the performance of the different controllers (P, PI, and PID), I observed the changes in the x and y positions, as well as the linear velocity, over time.
 
