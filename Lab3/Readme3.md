@@ -19,6 +19,9 @@ Additionally, the lab involves analyzing how linear and angular velocities must 
 ### Exercise 1
 For this exercise, we must calculate and display the Distance To Goal and Angle to Goal. The user will input the desired rotation and movement, and the program must kill the existing turtle and spawn it in the desired position. Since the turtle dies and respawns at the goal location, the DTG and ATG will be zero.
 
+![image](https://github.com/user-attachments/assets/37175fa2-3682-4f2b-9bcd-58cb21b3176b)
+
+
 ```python
 #!/usr/bin/env python3
 
@@ -93,6 +96,8 @@ Calls and performs the main function.
 
 ### Exercise 2
 Now, for exercise 2, we have to do something similar, but now the turtle will actually perform the trajectory. 
+![image](https://github.com/user-attachments/assets/31b3e9b1-1dc5-43a7-b18f-da521a7c1092)
+
 
 ```python
 #!/usr/bin/env python3
