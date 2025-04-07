@@ -223,3 +223,8 @@ if __name__ == '__main__':
         pass
 ```
 Calls main and the controller.
+
+## Conclusion
+This laboratory provided hands-on experience in controlling a mobile robot using ROS and the turtlesim simulator. Through the exercises, we gained a practical understanding of essential navigation concepts such as Distance To Goal (DTG) and Angle To Goal (ATG), and how these metrics guide a robot's movement within a 2D space. By spawning the turtle directly at the goal position in the first exercise, we verified our calculations and ensured an ideal starting condition where both DTG and ATG equaled zero.
+
+In the second exercise, we implemented a proportional controller that successfully guided the turtle to any user-defined position and orientation. This involved mapping errors in position and orientation to corresponding linear and angular velocities, which allowed the robot to correct its path and align with the goal. The infinite control loop ensured real-time updates and continuous interaction with the user for multiple navigation tasks.
